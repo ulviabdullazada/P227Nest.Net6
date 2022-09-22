@@ -1,21 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ülvi\\Desktop\\nest_backend-main\\Nest\\Nest\\Nest.csproj": {}
+    "C:\\Users\\ulvi.abdullazada\\Desktop\\P227Nest.Net6-master\\Nest\\Nest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ülvi\\Desktop\\nest_backend-main\\Nest\\Nest\\Nest.csproj": {
+    "C:\\Users\\ulvi.abdullazada\\Desktop\\P227Nest.Net6-master\\Nest\\Nest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ülvi\\Desktop\\nest_backend-main\\Nest\\Nest\\Nest.csproj",
+        "projectUniqueName": "C:\\Users\\ulvi.abdullazada\\Desktop\\P227Nest.Net6-master\\Nest\\Nest.csproj",
         "projectName": "Nest",
-        "projectPath": "C:\\Users\\Ülvi\\Desktop\\nest_backend-main\\Nest\\Nest\\Nest.csproj",
-        "packagesPath": "C:\\Users\\Ülvi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ülvi\\Desktop\\nest_backend-main\\Nest\\Nest\\obj\\",
+        "projectPath": "C:\\Users\\ulvi.abdullazada\\Desktop\\P227Nest.Net6-master\\Nest\\Nest.csproj",
+        "packagesPath": "C:\\Users\\ulvi.abdullazada\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ulvi.abdullazada\\Desktop\\P227Nest.Net6-master\\Nest\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Ülvi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\ulvi.abdullazada\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -53,6 +59,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[6.0.9, )"
+            },
+            "Z.EntityFramework.Plus.EFCore": {
+              "target": "Package",
+              "version": "[6.15.0, )"
             }
           },
           "imports": [
@@ -74,7 +84,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -22,5 +22,6 @@ namespace Nest.Models
         public Vendor Vendor { get; set; }
         public Category Category { get; set; }
         public Badge Badge { get; set; }
+        public ICollection<ProductImage> ProductImages { get; set; }
     }
 }

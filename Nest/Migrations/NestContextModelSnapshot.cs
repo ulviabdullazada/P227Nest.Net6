@@ -141,6 +141,31 @@ namespace Nest.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("Nest.Models.ProductImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("Status")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductImages");
+                });
+
             modelBuilder.Entity("Nest.Models.Slider", b =>
                 {
                     b.Property<int>("Id")
@@ -242,6 +267,17 @@ namespace Nest.Migrations
                     b.Navigation("Vendor");
                 });
 
+            modelBuilder.Entity("Nest.Models.ProductImage", b =>
+                {
+                    b.HasOne("Nest.Models.Product", "Product")
+                        .WithMany("ProductImages")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("Nest.Models.Badge", b =>
                 {
                     b.Navigation("Products");
@@ -250,6 +286,11 @@ namespace Nest.Migrations
             modelBuilder.Entity("Nest.Models.Category", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Nest.Models.Product", b =>
+                {
+                    b.Navigation("ProductImages");
                 });
 
             modelBuilder.Entity("Nest.Models.Vendor", b =>
