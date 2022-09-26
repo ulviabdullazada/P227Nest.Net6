@@ -8,49 +8,53 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Nest
 build_property.RootNamespace = Nest
-build_property.ProjectDir = C:\Users\ulvi.abdullazada\Desktop\P227Nest.Net6-master\Nest\
+build_property.ProjectDir = C:\Users\ulvi.abdullazada\Desktop\Nest\Nest\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\ulvi.abdullazada\Desktop\P227Nest.Net6-master\Nest
+build_property.MSBuildProjectDirectory = C:\Users\ulvi.abdullazada\Desktop\Nest\Nest
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/ulvi.abdullazada/Desktop/P227Nest.Net6-master/Nest/Views/Home/Index.cshtml]
+[C:/Users/ulvi.abdullazada/Desktop/Nest/Nest/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ulvi.abdullazada/Desktop/P227Nest.Net6-master/Nest/Views/Shop/Cart.cshtml]
+[C:/Users/ulvi.abdullazada/Desktop/Nest/Nest/Views/Shared/_ProductListPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Qcm9kdWN0TGlzdFBhcnRpYWxWaWV3LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ulvi.abdullazada/Desktop/Nest/Nest/Views/Shop/Cart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hvcFxDYXJ0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ulvi.abdullazada/Desktop/P227Nest.Net6-master/Nest/Views/Shop/Compare.cshtml]
+[C:/Users/ulvi.abdullazada/Desktop/Nest/Nest/Views/Shop/Compare.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hvcFxDb21wYXJlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ulvi.abdullazada/Desktop/P227Nest.Net6-master/Nest/Views/Shop/Index.cshtml]
+[C:/Users/ulvi.abdullazada/Desktop/Nest/Nest/Views/Shop/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hvcFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ulvi.abdullazada/Desktop/P227Nest.Net6-master/Nest/Views/Shop/Product.cshtml]
+[C:/Users/ulvi.abdullazada/Desktop/Nest/Nest/Views/Shop/Product.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hvcFxQcm9kdWN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ulvi.abdullazada/Desktop/P227Nest.Net6-master/Nest/Views/Vendor/Details.cshtml]
+[C:/Users/ulvi.abdullazada/Desktop/Nest/Nest/Views/Vendor/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVuZG9yXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ulvi.abdullazada/Desktop/P227Nest.Net6-master/Nest/Views/Vendor/Index.cshtml]
+[C:/Users/ulvi.abdullazada/Desktop/Nest/Nest/Views/Vendor/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVuZG9yXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ulvi.abdullazada/Desktop/P227Nest.Net6-master/Nest/Views/_ViewImports.cshtml]
+[C:/Users/ulvi.abdullazada/Desktop/Nest/Nest/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ulvi.abdullazada/Desktop/P227Nest.Net6-master/Nest/Views/_ViewStart.cshtml]
+[C:/Users/ulvi.abdullazada/Desktop/Nest/Nest/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ulvi.abdullazada/Desktop/P227Nest.Net6-master/Nest/Views/Shared/_Layout.cshtml]
+[C:/Users/ulvi.abdullazada/Desktop/Nest/Nest/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-nv6ei1gnxe

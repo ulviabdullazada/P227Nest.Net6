@@ -1,26 +1,26 @@
 ﻿@{
     ViewData["Title"] = "Vendor Details";
 }
-@model Vendor
+@model VendorDetailVM
 <main class="main">
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
-                <span></span> Satıcı <span></span> @Model.Name
+                <span></span> Satıcı <span></span> @Model.Vendor.Name
             </div>
         </div>
     </div>
     <div class="container mb-30">
-        <div class="archive-header-3 mt-30 mb-80" style="background-image: url(../../assets/imgs/vendor/@Model.BackgroundImageUrl); background-position:center;background-size:100%">
+        <div class="archive-header-3 mt-30 mb-80" style="background-image: url(../../assets/imgs/vendor/@Model.Vendor.BackgroundImageUrl); background-position:center;background-size:100%">
             <div class="archive-header-3-inner">
                 <div class="vendor-logo mr-50">
-                    <img src="~/assets/imgs/vendor/@Model.ProfileImageUrl" alt="" />
+                    <img src="~/assets/imgs/vendor/@Model.Vendor.ProfileImageUrl" alt="" />
                 </div>
                 <div class="vendor-content">
                     <div class="product-category">
-                        <span class="text-muted">Since @Model.CreatedYear</span>
+                        <span class="text-muted">Since @Model.Vendor.CreatedYear</span>
                     </div>
-                    <h3 class="mb-5 text-white"><a href="vendor-details-1.html" class="text-white">@Model.Name</a></h3>
+                    <h3 class="mb-5 text-white"><a href="vendor-details-1.html" class="text-white">@Model.Vendor.Name</a></h3>
                     <div class="product-rate-cover mb-15">
                         <div class="product-rate d-inline-block">
                             <div class="product-rating" style="width: 90%"></div>
@@ -31,14 +31,14 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="vendor-des mb-15">
-                                <p class="font-sm text-white">@Model.Description<p>
+                                <p class="font-sm text-white">@Model.Vendor.Description<p>
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="vendor-info text-white mb-15">
                                 <ul class="font-sm">
-                                    <li><img class="mr-5" src="~/assets/imgs/theme/icons/icon-location.svg" alt="" /><strong>Address: </strong> <span>@Model.Address</span></li>
-                                    <li><img class="mr-5" src="~/assets/imgs/theme/icons/icon-contact.svg" alt="" /><strong>Call Us:</strong><span>@Model.Number</span></li>
+                                    <li><img class="mr-5" src="~/assets/imgs/theme/icons/icon-location.svg" alt="" /><strong>Address: </strong> <span>@Model.Vendor.Address</span></li>
+                                    <li><img class="mr-5" src="~/assets/imgs/theme/icons/icon-contact.svg" alt="" /><strong>Call Us:</strong><span>@Model.Vendor.Number</span></li>
                                 </ul>
                             </div>
                         </div>
@@ -75,453 +75,78 @@
         </div>
         <div class="row flex-row-reverse">
             <div class="col-lg-4-5">
-                <div class="shop-product-fillter">
-                    <div class="totall-product">
-                        <p>We found <strong class="text-brand">29</strong> items for you!</p>
-                    </div>
-                    <div class="sort-by-product-area">
-                        <div class="sort-by-cover mr-10">
-                            <div class="sort-by-product-wrap">
-                                <div class="sort-by">
-                                    <span><i class="fi-rs-apps"></i>Show:</span>
-                                </div>
-                                <div class="sort-by-dropdown-wrap">
-                                    <span> 50 <i class="fi-rs-angle-small-down"></i></span>
-                                </div>
-                            </div>
-                            <div class="sort-by-dropdown">
-                                <ul>
-                                    <li><a class="active" href="#">50</a></li>
-                                    <li><a href="#">100</a></li>
-                                    <li><a href="#">150</a></li>
-                                    <li><a href="#">200</a></li>
-                                    <li><a href="#">All</a></li>
-                                </ul>
-                            </div>
+                @if (Model.Products.Count() > 0)
+                {
+                    <div class="shop-product-fillter">
+                        <div class="totall-product">
+                            <p><strong class="text-brand">@Model.Products.Count()</strong> məhsul tapıldı!</p>
                         </div>
-                        <div class="sort-by-cover">
-                            <div class="sort-by-product-wrap">
-                                <div class="sort-by">
-                                    <span><i class="fi-rs-apps-sort"></i>Sort by:</span>
-                                </div>
-                                <div class="sort-by-dropdown-wrap">
-                                    <span> Featured <i class="fi-rs-angle-small-down"></i></span>
-                                </div>
-                            </div>
-                            <div class="sort-by-dropdown">
-                                <ul>
-                                    <li><a class="active" href="#">Featured</a></li>
-                                    <li><a href="#">Price: Low to High</a></li>
-                                    <li><a href="#">Price: High to Low</a></li>
-                                    <li><a href="#">Release Date</a></li>
-                                    <li><a href="#">Avg. Rating</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-list mb-50">
-                    <div class="product-cart-wrap">
-                        <div class="product-img-action-wrap">
-                            <div class="product-img product-img-zoom">
-                                <div class="product-img-inner">
-                                    <a href="shop-product-right.html">
-                                        <img class="default-img" src="~/assets/imgs/shop/product-2-1.jpg" alt="" />
-                                        <img class="hover-img" src="~/assets/imgs/shop/product-2-2.jpg" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="product-action-1">
-                                <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
-                                <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
-                            </div>
-                            <div class="product-badges product-badges-position product-badges-mrg">
-                                <span class="hot">Hot</span>
-                            </div>
-                        </div>
-                        <div class="product-content-wrap">
-                            <div class="product-category">
-                                <a href="shop-grid-right.html">Hodo Foods</a>
-                            </div>
-                            <h2><a href="shop-product-right.html">Field Roast Chao Cheese Creamy Original</a></h2>
-                            <div class="product-rate-cover">
-                                <div class="product-rate d-inline-block">
-                                    <div class="product-rating" style="width: 90%"></div>
-                                </div>
-                                <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                <span class="ml-30">500g</span>
-                            </div>
-                            <p class="mt-15 mb-15">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam beatae consectetur, atque inventore aliquam adipisci perspiciatis nostrum qui consequatur praesentium?</p>
-
-                            <div class="product-price">
-                                <span>$238.85 </span>
-                                <span class="old-price">$245.8</span>
-                            </div>
-
-                            <div class="mt-30 d-flex align-items-center">
-                                <a aria-label="Buy now" class="btn" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add to Cart</a>
-                                <a href="#" class="add-wishlish ml-30 text-body font-sm font-heading font-weight-bold"><i class="fi-rs-shuffle mr-5"></i>Add Compare</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!--single product-->
-                    <div class="product-cart-wrap">
-                        <div class="product-img-action-wrap">
-                            <div class="product-img product-img-zoom">
-                                <div class="product-img-inner">
-                                    <a href="shop-product-right.html">
-                                        <img class="default-img" src="~/assets/imgs/shop/product-3-1.jpg" alt="" />
-                                        <img class="hover-img" src="~/assets/imgs/shop/product-3-2.jpg" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="product-action-1">
-                                <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
-                                <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
-                            </div>
-                            <div class="product-badges product-badges-position product-badges-mrg">
-                                <span class="sale">sale</span>
-                            </div>
-                        </div>
-                        <div class="product-content-wrap">
-                            <div class="product-category">
-                                <a href="shop-grid-right.html">Hodo Foods</a>
-                            </div>
-                            <h2><a href="shop-product-right.html">Fresh Organic Mustard Leaves</a></h2>
-                            <div class="product-rate-cover">
-                                <div class="product-rate d-inline-block">
-                                    <div class="product-rating" style="width: 90%"></div>
-                                </div>
-                                <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                <span class="ml-30">500g</span>
-                            </div>
-                            <p class="mt-15 mb-15">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam beatae consectetur, atque inventore aliquam adipisci perspiciatis nostrum qui consequatur praesentium?</p>
-
-                            <div class="product-price">
-                                <span>$238.85 </span>
-                                <span class="old-price">$245.8</span>
-                            </div>
-
-                            <div class="mt-30">
-                                <a aria-label="Buy now" class="btn" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add to Cart</a>
-                                <a href="#" class="add-wishlish ml-30 text-body font-sm font-heading font-weight-bold"><i class="fi-rs-shuffle mr-5"></i>Add Compare</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!--single product-->
-                    <div class="product-cart-wrap">
-                        <div class="product-img-action-wrap">
-                            <div class="product-img product-img-zoom">
-                                <div class="product-img-inner">
-                                    <a href="shop-product-right.html">
-                                        <img class="default-img" src="~/assets/imgs/shop/product-4-1.jpg" alt="" />
-                                        <img class="hover-img" src="~/assets/imgs/shop/product-4-2.jpg" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="product-action-1">
-                                <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
-                                <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
-                            </div>
-                            <div class="product-badges product-badges-position product-badges-mrg">
-                                <span class="new">New</span>
-                            </div>
-                        </div>
-                        <div class="product-content-wrap">
-                            <div class="product-category">
-                                <a href="shop-grid-right.html">Hodo Foods</a>
-                            </div>
-                            <h2><a href="shop-product-right.html">Organic Green Bell Pepper</a></h2>
-                            <div class="product-rate-cover">
-                                <div class="product-rate d-inline-block">
-                                    <div class="product-rating" style="width: 90%"></div>
-                                </div>
-                                <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                <span class="ml-30">500g</span>
-                            </div>
-                            <p class="mt-15 mb-15">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam beatae consectetur, atque inventore aliquam adipisci perspiciatis nostrum qui consequatur praesentium?</p>
-
-                            <div class="product-price">
-                                <span>$238.85 </span>
-                                <span class="old-price">$245.8</span>
-                            </div>
-
-                            <div class="mt-30">
-                                <a aria-label="Buy now" class="btn" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add to Cart</a>
-                                <a href="#" class="add-wishlish ml-30 text-body font-sm font-heading font-weight-bold"><i class="fi-rs-shuffle mr-5"></i>Add Compare</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!--single product-->
-                    <div class="product-cart-wrap">
-                        <div class="product-img-action-wrap">
-                            <div class="product-img product-img-zoom">
-                                <div class="product-img-inner">
-                                    <a href="shop-product-right.html">
-                                        <img class="default-img" src="~/assets/imgs/shop/product-5-1.jpg" alt="" />
-                                        <img class="hover-img" src="~/assets/imgs/shop/product-5-2.jpg" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="product-action-1">
-                                <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
-                                <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
-                            </div>
-                        </div>
-                        <div class="product-content-wrap">
-                            <div class="product-category">
-                                <a href="shop-grid-right.html">Hodo Foods</a>
-                            </div>
-                            <h2><a href="shop-product-right.html">Angie’s Boomchickapop Sweet & Salty Kettle Corn</a></h2>
-                            <div class="product-rate-cover">
-                                <div class="product-rate d-inline-block">
-                                    <div class="product-rating" style="width: 90%"></div>
-                                </div>
-                                <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                <span class="ml-30">500g</span>
-                            </div>
-                            <p class="mt-15 mb-15">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam beatae consectetur, atque inventore aliquam adipisci perspiciatis nostrum qui consequatur praesentium?</p>
-
-                            <div class="product-price">
-                                <span>$238.85 </span>
-                                <span class="old-price">$245.8</span>
-                            </div>
-
-                            <div class="mt-30">
-                                <a aria-label="Buy now" class="btn" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add to Cart</a>
-                                <a href="#" class="add-wishlish ml-30 text-body font-sm font-heading font-weight-bold"><i class="fi-rs-shuffle mr-5"></i>Add Compare</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!--single product-->
-                    <div class="product-cart-wrap">
-                        <div class="product-img-action-wrap">
-                            <div class="product-img product-img-zoom">
-                                <div class="product-img-inner">
-                                    <a href="shop-product-right.html">
-                                        <img class="default-img" src="~/assets/imgs/shop/product-6-1.jpg" alt="" />
-                                        <img class="hover-img" src="~/assets/imgs/shop/product-6-2.jpg" alt="" />
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="product-action-1">
-                                <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
-                                <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
-                            </div>
-                            <div class="product-badges product-badges-position product-badges-mrg">
-                                <span class="best">Best</span>
-                            </div>
-                        </div>
-                        <div class="product-content-wrap">
-                            <div class="product-category">
-                                <a href="shop-grid-right.html">Hodo Foods</a>
-                            </div>
-                            <h2><a href="shop-product-right.html">Foster Farms Takeout Crispy Classic Buffalo Wings</a></h2>
-                            <div class="product-rate-cover">
-                                <div class="product-rate d-inline-block">
-                                    <div class="product-rating" style="width: 90%"></div>
-                                </div>
-                                <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                <span class="ml-30">500g</span>
-                            </div>
-                            <p class="mt-15 mb-15">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam beatae consectetur, atque inventore aliquam adipisci perspiciatis nostrum qui consequatur praesentium?</p>
-
-                            <div class="product-price">
-                                <span>$238.85 </span>
-                                <span class="old-price">$245.8</span>
-                            </div>
-
-                            <div class="mt-30">
-                                <a aria-label="Buy now" class="btn" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add to Cart</a>
-                                <a href="#" class="add-wishlish ml-30 text-body font-sm font-heading font-weight-bold"><i class="fi-rs-shuffle mr-5"></i>Add Compare</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!--single product-->
-                </div>
-                <!--product grid-->
-                <div class="pagination-area mt-20 mb-20">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-start">
-                            <li class="page-item">
-                                <a class="page-link" href="#"><i class="fi-rs-arrow-small-left"></i></a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link dot" href="#">...</a></li>
-                            <li class="page-item"><a class="page-link" href="#">6</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#"><i class="fi-rs-arrow-small-right"></i></a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-                <section class="section-padding pb-5">
-                    <div class="section-title">
-                        <h3 class="">Deals Of The Day</h3>
-                        <a class="show-all" href="shop-grid-right.html">
-                            All Deals
-                            <i class="fi-rs-angle-right"></i>
-                        </a>
-                    </div>
-                    <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-6">
-                            <div class="product-cart-wrap style-2">
-                                <div class="product-img-action-wrap">
-                                    <div class="product-img">
-                                        <a href="shop-product-right.html">
-                                            <img src="~/assets/imgs/banner/banner-5.png" alt="" />
-                                        </a>
+                        <div class="sort-by-product-area">
+                            <div class="sort-by-cover mr-10">
+                                <div class="sort-by-product-wrap">
+                                    <div class="sort-by">
+                                        <span><i class="fi-rs-apps"></i>Show:</span>
+                                    </div>
+                                    <div class="sort-by-dropdown-wrap">
+                                        <span> 50 <i class="fi-rs-angle-small-down"></i></span>
                                     </div>
                                 </div>
-                                <div class="product-content-wrap">
-                                    <div class="deals-countdown-wrap">
-                                        <div class="deals-countdown" data-countdown="2025/03/25 00:00:00"></div>
-                                    </div>
-                                    <div class="deals-content">
-                                        <h2><a href="shop-product-right.html">Seeds of Change Organic Quinoa, Brown</a></h2>
-                                        <div class="product-rate-cover">
-                                            <div class="product-rate d-inline-block">
-                                                <div class="product-rating" style="width: 90%"></div>
-                                            </div>
-                                            <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                        </div>
-                                        <div>
-                                            <span class="font-small text-muted">By <a href="vendor-details-1.html">NestFood</a></span>
-                                        </div>
-                                        <div class="product-card-bottom">
-                                            <div class="product-price">
-                                                <span>$32.85</span>
-                                                <span class="old-price">$33.8</span>
-                                            </div>
-                                            <div class="add-cart">
-                                                <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="sort-by-dropdown">
+                                    <ul>
+                                        <li><a class="active" href="#">50</a></li>
+                                        <li><a href="#">100</a></li>
+                                        <li><a href="#">150</a></li>
+                                        <li><a href="#">200</a></li>
+                                        <li><a href="#">All</a></li>
+                                    </ul>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-md-6">
-                            <div class="product-cart-wrap style-2">
-                                <div class="product-img-action-wrap">
-                                    <div class="product-img">
-                                        <a href="shop-product-right.html">
-                                            <img src="~/assets/imgs/banner/banner-6.png" alt="" />
-                                        </a>
+                            <div class="sort-by-cover">
+                                <div class="sort-by-product-wrap">
+                                    <div class="sort-by">
+                                        <span><i class="fi-rs-apps-sort"></i>Sort by:</span>
+                                    </div>
+                                    <div class="sort-by-dropdown-wrap">
+                                        <span> Featured <i class="fi-rs-angle-small-down"></i></span>
                                     </div>
                                 </div>
-                                <div class="product-content-wrap">
-                                    <div class="deals-countdown-wrap">
-                                        <div class="deals-countdown" data-countdown="2026/04/25 00:00:00"></div>
-                                    </div>
-                                    <div class="deals-content">
-                                        <h2><a href="shop-product-right.html">Perdue Simply Smart Organics Gluten</a></h2>
-                                        <div class="product-rate-cover">
-                                            <div class="product-rate d-inline-block">
-                                                <div class="product-rating" style="width: 90%"></div>
-                                            </div>
-                                            <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                        </div>
-                                        <div>
-                                            <span class="font-small text-muted">By <a href="vendor-details-1.html">Old El Paso</a></span>
-                                        </div>
-                                        <div class="product-card-bottom">
-                                            <div class="product-price">
-                                                <span>$24.85</span>
-                                                <span class="old-price">$26.8</span>
-                                            </div>
-                                            <div class="add-cart">
-                                                <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-md-6 d-none d-lg-block">
-                            <div class="product-cart-wrap style-2">
-                                <div class="product-img-action-wrap">
-                                    <div class="product-img">
-                                        <a href="shop-product-right.html">
-                                            <img src="~/assets/imgs/banner/banner-7.png" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="product-content-wrap">
-                                    <div class="deals-countdown-wrap">
-                                        <div class="deals-countdown" data-countdown="2027/03/25 00:00:00"></div>
-                                    </div>
-                                    <div class="deals-content">
-                                        <h2><a href="shop-product-right.html">Signature Wood-Fired Mushroom</a></h2>
-                                        <div class="product-rate-cover">
-                                            <div class="product-rate d-inline-block">
-                                                <div class="product-rating" style="width: 80%"></div>
-                                            </div>
-                                            <span class="font-small ml-5 text-muted"> (3.0)</span>
-                                        </div>
-                                        <div>
-                                            <span class="font-small text-muted">By <a href="vendor-details-1.html">Progresso</a></span>
-                                        </div>
-                                        <div class="product-card-bottom">
-                                            <div class="product-price">
-                                                <span>$12.85</span>
-                                                <span class="old-price">$13.8</span>
-                                            </div>
-                                            <div class="add-cart">
-                                                <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4 col-md-6 d-none d-xl-block">
-                            <div class="product-cart-wrap style-2">
-                                <div class="product-img-action-wrap">
-                                    <div class="product-img">
-                                        <a href="shop-product-right.html">
-                                            <img src="~/assets/imgs/banner/banner-8.png" alt="" />
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="product-content-wrap">
-                                    <div class="deals-countdown-wrap">
-                                        <div class="deals-countdown" data-countdown="2025/02/25 00:00:00"></div>
-                                    </div>
-                                    <div class="deals-content">
-                                        <h2><a href="shop-product-right.html">Simply Lemonade with Raspberry Juice</a></h2>
-                                        <div class="product-rate-cover">
-                                            <div class="product-rate d-inline-block">
-                                                <div class="product-rating" style="width: 80%"></div>
-                                            </div>
-                                            <span class="font-small ml-5 text-muted"> (3.0)</span>
-                                        </div>
-                                        <div>
-                                            <span class="font-small text-muted">By <a href="vendor-details-1.html">Yoplait</a></span>
-                                        </div>
-                                        <div class="product-card-bottom">
-                                            <div class="product-price">
-                                                <span>$15.85</span>
-                                                <span class="old-price">$16.8</span>
-                                            </div>
-                                            <div class="add-cart">
-                                                <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="sort-by-dropdown">
+                                    <ul>
+                                        <li><a class="active" href="#">Featured</a></li>
+                                        <li><a href="#">Price: Low to High</a></li>
+                                        <li><a href="#">Price: High to Low</a></li>
+                                        <li><a href="#">Release Date</a></li>
+                                        <li><a href="#">Avg. Rating</a></li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
-                <!--End Deals-->
+                    <div class="product-list mb-50">
+                        <partial name="_ProductListPartialView" model="Model.Products">
+                    </div>
+                    <!--product grid-->
+                    <div class="pagination-area mt-20 mb-20">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-start">
+                                <li class="page-item">
+                                    <a class="page-link" href="#"><i class="fi-rs-arrow-small-left"></i></a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link dot" href="#">...</a></li>
+                                <li class="page-item"><a class="page-link" href="#">6</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#"><i class="fi-rs-arrow-small-right"></i></a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                }
+                else{
+                    <h3 class="text-center"> <strong class="text-brand"> @Model.Vendor.Name </strong>mağazasının satışda heç bir məhsulu yoxdur</h3>
+                }
             </div>
             <div class="col-lg-1-5 primary-sidebar sticky-sidebar">
                 <div class="banner-img mb-30">
