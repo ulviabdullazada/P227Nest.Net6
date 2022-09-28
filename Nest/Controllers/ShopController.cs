@@ -22,12 +22,16 @@ namespace Nest.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int? page=1)
         {
+            if (page < 0) page = 1;
+            var products = _context.Products.Include(p => p.ProductImages).Include(p => p.Vendor)
+                .Include(p => p.Badge);
+            ViewBag.ActivePage = page;
+            ViewBag.PageCount = Math.Ceiling((double)products.Count() / 2);
             ShopIndexVM index = new ShopIndexVM
             {
-                Products = _context.Products.IncludeOptimized(p => p.ProductImages).IncludeOptimized(p => p.Vendor)
-                .IncludeOptimized(p => p.Badge),
+                Products = products.Skip(((int)page - 1) * 2).Take(2),
                 Categories = _context.Categories.Include(c => c.Products),
                 Vendors = _context.Vendors.Include(v=>v.Products).OrderByDescending(v=>v.Products.Count).Take(6),
             };

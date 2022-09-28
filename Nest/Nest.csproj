@@ -10,14 +10,55 @@
     <Content Remove="wwwroot\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="wwwroot\" />
+    <Folder Include="Areas\Manage\Data\" />
+    <Folder Include="Areas\Manage\Models\" />
     <Folder Include="Views\Shop\" />
     <Folder Include="Views\Vendor\" />
+    <Folder Include="wwwroot\manage\assets\fonts\material-icon\css\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Models\" />
     <None Remove="Views\Shop\" />
     <None Remove="Views\Vendor\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\manage\assets\css\main.css.map" />
+    <None Include="wwwroot\manage\assets\css\vendors\bootstrap.css.map" />
+    <None Include="wwwroot\manage\assets\fonts\material-icon\MaterialIcons-Outlined.woff2" />
+    <None Include="wwwroot\manage\assets\fonts\material-icon\MaterialIcons-Round.woff2" />
+    <None Include="wwwroot\manage\assets\fonts\material-icon\MaterialIcons-Sharp.woff2" />
+    <None Include="wwwroot\manage\assets\fonts\material-icon\MaterialIcons-TwoTone.woff2" />
+    <None Include="wwwroot\manage\assets\fonts\material-icon\MaterialIcons.woff2" />
+    <None Include="wwwroot\manage\assets\imgs\icons\stars-active.svg" />
+    <None Include="wwwroot\manage\assets\imgs\icons\starts-disable.svg" />
+    <None Include="wwwroot\manage\assets\imgs\theme\favicon.svg" />
+    <None Include="wwwroot\manage\assets\imgs\theme\logo.svg" />
+    <None Include="wwwroot\manage\assets\imgs\theme\upload.svg" />
+    <None Include="wwwroot\manage\assets\js\custom-chart.js" />
+    <None Include="wwwroot\manage\assets\js\main.js" />
+    <None Include="wwwroot\manage\assets\js\vendors\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\manage\assets\js\vendors\bootstrap.min.js" />
+    <None Include="wwwroot\manage\assets\js\vendors\chart.js" />
+    <None Include="wwwroot\manage\assets\js\vendors\jquery-3.6.0.min.js" />
+    <None Include="wwwroot\manage\assets\js\vendors\jquery.fullscreen.min.js" />
+    <None Include="wwwroot\manage\assets\js\vendors\perfect-scrollbar.js" />
+    <None Include="wwwroot\manage\assets\js\vendors\select2.min.js" />
+    <None Include="wwwroot\manage\assets\sass\abstracts\_import-vendors.scss" />
+    <None Include="wwwroot\manage\assets\sass\abstracts\_mixins.scss" />
+    <None Include="wwwroot\manage\assets\sass\abstracts\_variables.scss" />
+    <None Include="wwwroot\manage\assets\sass\base\_helpers.scss" />
+    <None Include="wwwroot\manage\assets\sass\base\_typography.scss" />
+    <None Include="wwwroot\manage\assets\sass\components\_buttons.scss" />
+    <None Include="wwwroot\manage\assets\sass\components\_elements.scss" />
+    <None Include="wwwroot\manage\assets\sass\components\_forms.scss" />
+    <None Include="wwwroot\manage\assets\sass\components\_items.scss" />
+    <None Include="wwwroot\manage\assets\sass\components\_lists.scss" />
+    <None Include="wwwroot\manage\assets\sass\components\_navigation.scss" />
+    <None Include="wwwroot\manage\assets\sass\layout\_layout-dark.scss" />
+    <None Include="wwwroot\manage\assets\sass\layout\_layout.scss" />
+    <None Include="wwwroot\manage\assets\sass\layout\_responsive.scss" />
+    <None Include="wwwroot\manage\assets\sass\layout\_spacing.scss" />
+    <None Include="wwwroot\manage\assets\sass\main.scss" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.9" />
