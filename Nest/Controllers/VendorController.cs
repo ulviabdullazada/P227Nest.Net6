@@ -23,7 +23,7 @@ namespace Nest.Controllers
         public IActionResult Index()
         {
 
-            return View(_context.Vendors.Include(v=>v.Products).Where(v=>!v.IsDeleted));
+            return View(_context.Vendors.Include(v=>v.Products).Where(v=>v.IsDeleted==false));
         }
 
         public IActionResult Details(int? id)

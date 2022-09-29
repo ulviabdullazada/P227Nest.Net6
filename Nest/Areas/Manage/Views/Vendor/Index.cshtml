@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    int order = 1;
+}
+@model IEnumerable<Vendor>
+<div class="card">
+    <div class="card-header">
+        <a asp-action="Create" class="btn btn-success">Create</a>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr class="text-center">
+                    <th>№</th>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Product Count</th>
+                    <th>Status</th>
+                    <th colspan="3">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@(order++)</td>
+                        <td><img src="~/assets/imgs/vendor/@item.ProfileImageUrl" width="50" /></td>
+                        <td>@item.Name</td>
+                        <td style="width:15%">
+                            @if (item.Description.Length > 150)
+                            {
+                                @(item.Description.Substring(0, 147) + "...");
+                            }else{
+                                @item.Description
+                            }
+                        </td>
+                        <td>@item.Products?.Count</td>
+                        <td>
+                            @if (item.IsDeleted == true)
+                            {
+                                <span class="badge rounded-pill alert-danger">Deleted</span>
+                            }
+                            else
+                            {
+                                <span class="badge rounded-pill alert-success">Active</span>
+                            }
+                        </td>
+                        <td><a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-primary">View</a></td>
+                        <td><a asp-action="Update" asp-route-id="@item.Id" class="btn btn-warning">Edit</a></td>
+                        <td><a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger cat-del">Delete</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Nest.DAL;
 using Nest.Models;
+using Nest.Utlis.Constants;
+using Nest.Utlis.Extensions;
+using System.Reflection.Metadata;
 
 namespace Nest.Areas.Manage.Controllers
 {
@@ -35,30 +38,23 @@ namespace Nest.Areas.Manage.Controllers
         [HttpPost]
         public IActionResult Create(Category category)
         {
+            if (category.ImageFile is null) ModelState.AddModelError("ImageFile","Zəhmət olmasa faylı seçin");
             if (!ModelState.IsValid) return View();
             var file = category.ImageFile;
-            if (file.ContentType != "image/jpeg" || file.ContentType != "image/png")
+            if (!file.CheckFileExtension("image/"))
             {
-                ModelState.AddModelError("ImageFile","Fayl formatı jpg,jpeg və ya png olmalıdır.");
+                ModelState.AddModelError("ImageFile","Yüklədiyiniz fayl şəkil deyil");
+                return View();
             }
-            if (file.Length < 1024 * 2)
+            if (file.CheckFileSize(2))
             {
-                ModelState.AddModelError("ImageFile", "Fayl ölçüsü 200kb-dan az olmalıdır");
+                ModelState.AddModelError("ImageFile","Yüklədiyiniz fayl 2mb-dan artıq olmamalıdır");
+                return View();
             }
-            string fileName = Guid.NewGuid().ToString();
-            if (file.FileName.Length > 64)
-            {
-                fileName += file.FileName.Substring(0, 63) + file.FileName.Substring(file.FileName.LastIndexOf("."));
-            }
-            else
-            {
-                fileName += file.FileName;
-            }
-            using (var writer = new FileStream(@"/assets/imgs/shop", FileMode.Create))
-            {
-                file.CopyTo(writer);
-            }
-            category.ImageUrl = fileName;
+            string newFileName = Guid.NewGuid().ToString();
+            newFileName += file.CutFileName(60);
+            file.SaveFile(Path.Combine("imgs", "shop", newFileName));
+            category.ImageUrl = newFileName;
             _context.Categories.Add(category);
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
@@ -69,8 +65,9 @@ namespace Nest.Areas.Manage.Controllers
             Category category = _context.Categories.Include(c=>c.Products).FirstOrDefault(x=>x.Id == id);
             if (category is null) return NotFound("Kateqoriya tapılmadı");
             if (category.Products.Count >= 1) return BadRequest("Bu kateqoriyaya aid məhsullar mövcuddur");
-            if (category.IsDeleted)
+            if (category.IsDeleted == true)
             {
+                RemoveFile(Path.Combine("shop", category.ImageUrl));
                 _context.Categories.Remove(category);
             }
             else
@@ -80,6 +77,50 @@ namespace Nest.Areas.Manage.Controllers
             category.Modified = DateTime.UtcNow;
             _context.SaveChanges();
             return Ok();
+        }
+        public IActionResult Update(int? id)
+        {
+            if (id is null) return BadRequest();
+            Category item = _context.Categories.Find(id);
+            if (item is null) return NotFound();
+            return View(item);
+        }
+        [HttpPost]
+        public IActionResult Update(int? id, Category category)
+        {
+            if (id != category.Id || id is null) return BadRequest();
+            Category item = _context.Categories.Find(id);
+            if (item is null) return NotFound();
+            if (category.ImageFile != null)
+            {
+                IFormFile file = category.ImageFile;
+                if (!file.CheckFileExtension("image/"))
+                {
+                    ModelState.AddModelError("ImageFile","Yüklədiyiniz fayl şəkil deyil");
+                    return View();
+                }
+                if (file.CheckFileSize(2))
+                {
+                    ModelState.AddModelError("ImageFile", "Yüklədiyiniz fayl 2mb-dan artıq olmamalıdır");
+                    return View();
+                }
+                string newFileName = Guid.NewGuid().ToString();
+                newFileName += file.CutFileName();
+                RemoveFile(Path.Combine("imgs",item.ImageUrl));
+                file.SaveFile(Path.Combine("imgs","shop",newFileName));
+                item.ImageUrl = newFileName;
+            }
+            item.Name = category.Name;
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+        public static void RemoveFile(string path)
+        {
+            path = Path.Combine(Constants.RootPath,"img",path);
+            if (System.IO.File.Exists(path))
+            {
+                System.IO.File.Delete(path);
+            }
         }
     }
 }

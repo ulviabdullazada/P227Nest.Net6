@@ -46,7 +46,7 @@
                 <div class="carausel-10-columns" id="carausel-10-columns">
                     @foreach (var cat in Model.Categories)
                     {
-                        <div class="card-2 bg-@r.Next(1,16) wow animate__animated animate__fadeInUp" style="" data-wow-delay=".1s">
+                        <div class="card-2 bg-@r.Next(1,16) wow animate__animated animate__fadeInUp d-flex flex-column align-items-stretch" data-wow-delay=".1s">
                             <figure class="img-hover-scale overflow-hidden">
                                 <a href="shop-grid-right.html"><img src="~/assets/imgs/shop/@cat.ImageUrl" alt="" /></a>
                             </figure>
