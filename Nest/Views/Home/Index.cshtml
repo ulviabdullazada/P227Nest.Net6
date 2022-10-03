@@ -165,9 +165,13 @@
                                     <h2><a href="shop-product-right.html">@prd.Name</a></h2>
                                     <div class="product-rate-cover">
                                         <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width: @(prd.ReviewSum/prd.ReviewCount)%"></div>
+                                            @if(prd.ReviewCount != 0){
+                                                <div class="product-rating" style="width: @(prd.ReviewSum/prd.ReviewCount)%"></div>
+                                            }
                                         </div>
-                                        <span class="font-small ml-5 text-muted"> (@((double)(prd.ReviewSum/prd.ReviewCount)/20))</span>
+                                        @if(prd.ReviewCount != 0){
+                                            <span class="font-small ml-5 text-muted"> (@((double)(prd.ReviewSum/prd.ReviewCount)/20))</span>
+                                        }
                                     </div>
                                     <div>
                                         <span class="font-small text-muted">By <a href="vendor-details-1.html">@prd.Vendor.Name</a></span>

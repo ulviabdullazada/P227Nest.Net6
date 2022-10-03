@@ -1,5 +1,6 @@
-﻿@{
-    ViewData["Title"] = "Vendor - Create";
+﻿
+@{
+    ViewData["Title"] = "Create";
 }
 @model Vendor
 <div class="row">
@@ -19,19 +20,15 @@
                     <h4>Media</h4>
                 </div>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <span>Profil şəkli</span>
-                            <label class="text-center w-50" asp-for="ProfileImageFile"><img src="~/manage/assets/imgs/theme/upload.svg" alt="" /></label>
-                            <input class="form-control" asp-for="ProfileImageFile" />
-                            <span class="text-danger" asp-validation-for="ProfileImageFile"></span>
-                        </div>
-                        <div class="col-md-6">
-                            <span>Cover şəkli (Məcbur deyil)</span>
-                            <label class="text-center w-50" asp-for="BackgroundImageFile"><img src="~/manage/assets/imgs/theme/upload.svg" alt="" /></label>
-                            <input class="form-control" asp-for="BackgroundImageFile" />
-                            <span class="text-danger" asp-validation-for="BackgroundImageFile"></span>
-                        </div>
+                    <div>
+                        <label class="text-center w-100" asp-for="ProfileImageFile"><img src="~/manage/assets/imgs/theme/upload.svg" alt="" /></label>
+                        <input class="form-control" asp-for="ProfileImageFile" />
+                        <span class="text-danger" asp-validation-for="ProfileImageFile"></span>
+                    </div>
+                    <div>
+                        <label class="text-center w-100" asp-for="BackgroundImageFile"><img src="~/manage/assets/imgs/theme/upload.svg" alt="" /></label>
+                        <input class="form-control" asp-for="BackgroundImageFile" />
+                        <span class="text-danger" asp-validation-for="BackgroundImageFile"></span>
                     </div>
                     <div class="mb-4">
                         <label class="form-label" asp-for="Name"></label>
@@ -49,18 +46,8 @@
                         <span class="text-danger" asp-validation-for="Address"></span>
                     </div>
                     <div class="mb-4">
-                        <label class="form-label" asp-for="CreatedYear"></label>
-                        <select>
-                            @for (int i = 1800; i <= DateTime.Now.Year; i++)
-                            {
-                                <option value="@i">@i</option>
-                            }
-                        </select>
-                        <span class="text-danger" asp-validation-for="CreatedYear"></span>
-                    </div>
-                    <div class="mb-4">
                         <label class="form-label" asp-for="Number"></label>
-                        <input class="form-control phone" value="994" asp-for="Number" />
+                        <input class="form-control phone" asp-for="Number" />
                         <span class="text-danger" asp-validation-for="Number"></span>
                     </div>
                     <button type="submit" class="btn btn-success">Create</button>

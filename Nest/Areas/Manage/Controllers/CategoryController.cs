@@ -122,5 +122,16 @@ namespace Nest.Areas.Manage.Controllers
                 System.IO.File.Delete(path);
             }
         }
+        [HttpPost]
+        public IActionResult SetStatus(int? id)
+        {
+            if (id is null) return BadRequest();
+            Category category = _context.Categories.Find(id);
+            if (category == null) return NotFound();
+            category.IsDeleted = false;
+            category.Modified = DateTime.UtcNow;
+            _context.SaveChanges();
+            return Ok();
+        }
     }
 }

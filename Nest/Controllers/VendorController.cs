@@ -39,6 +39,11 @@ namespace Nest.Controllers
             };
             return View(detailVM);
         }
+        public IActionResult Create()
+        {
+
+            return View();
+        }
 
 
     }

@@ -13,7 +13,6 @@
     <Folder Include="Areas\Manage\Data\" />
     <Folder Include="Areas\Manage\Models\" />
     <Folder Include="Views\Shop\" />
-    <Folder Include="Views\Vendor\" />
     <Folder Include="wwwroot\manage\assets\fonts\material-icon\css\" />
   </ItemGroup>
   <ItemGroup>
