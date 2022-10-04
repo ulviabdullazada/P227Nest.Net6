@@ -6,6 +6,8 @@
         {
             return file.ContentType.Contains(key);
         }
+        //file.CutFileName()
+        //FileExtension.CutFileName(file)
         public static string CutFileName(this IFormFile file,int maxSize = 60)
         {
             if (file.FileName.Length > maxSize)

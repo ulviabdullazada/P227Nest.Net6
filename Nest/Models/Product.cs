@@ -27,10 +27,21 @@ namespace Nest.Models
         public int CategoryId { get; set; }
         [Required]
         public int VendorId { get; set; }
+
+
+
         public Vendor? Vendor { get; set; }
         public Category? Category { get; set; }
         public Badge? Badge { get; set; }
+        public ICollection<ProductTag>? ProductTags { get; set; }
         public ICollection<ProductImage>? ProductImages { get; set; }
+
+
+
+        [NotMapped]
+        public List<int> ImageIds { get; set; }
+        [NotMapped]
+        public List<int> TagIds { get; set; }
 
         [NotMapped]
         public IFormFile? MainImage { get; set; }

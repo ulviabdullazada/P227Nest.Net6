@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Nest.DAL;
+using Nest.Models;
 using Nest.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +11,12 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<NestContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("default"));
 });
-
+builder.Services.AddIdentity<AppUser, IdentityRole>(con => {
+    con.Password.RequiredLength = 8;
+    con.Password.RequireNonAlphanumeric = false;
+    con.User.RequireUniqueEmail = true;
+}).AddDefaultTokenProviders()
+  .AddEntityFrameworkStores<NestContext>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<LayoutService>();
 
@@ -29,6 +36,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

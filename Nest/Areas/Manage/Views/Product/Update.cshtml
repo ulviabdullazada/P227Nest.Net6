@@ -1,0 +1,149 @@
+﻿
+@{
+    ViewData["Title"] = "Update";
+}
+
+
+@model Product
+@section styles{
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+}
+    <div class="row">
+        <div class="col-9">
+            <div class="content-header">
+                <h2 class="content-title">Satıcı əlavə et</h2>
+                <div>
+                    <button class="btn btn-light rounded font-sm mr-5 text-body hover-up">Save to draft</button>
+                    <button class="btn btn-md rounded font-sm hover-up">Publich</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <form method="post" enctype="multipart/form-data">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h4>Media</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span>Profil şəkli</span>
+                                <label class="text-center w-50" asp-for="MainImage"><img src="~/assets/imgs/shop/@Model.ProductImages.FirstOrDefault(pi=> pi.Status == true)?.ImageUrl" /></label>
+                                <input class="form-control" asp-for="MainImage" />
+                                <span class="text-danger" asp-validation-for="MainImage"></span>
+                                
+                            </div>
+                            <div class="col-md-4">
+                                <span>Hover şəkli (Məcbur deyil)</span>
+                                <label class="text-center w-50" asp-for="HoverImage"><img src="~/assets/imgs/shop/@Model.ProductImages.FirstOrDefault(pi=> pi.Status == false)?.ImageUrl" /></label>
+                                <input class="form-control" asp-for="HoverImage" />
+                                <span class="text-danger" asp-validation-for="HoverImage"></span>
+                            </div>
+                            <div class="col-md-4">
+                                <span>Digər şəkillər</span>
+                                <div class="d-flex">
+                                    @foreach (var item in Model.ProductImages.Where(pi=>pi.Status is null))
+                                    {
+                                        <div class="deletable position-relative" style="width:150px">
+                                            <img class="w-100" src="~/assets/imgs/shop/@item?.ImageUrl" />
+                                        <input type="hidden" name="ImageIds[]" value="@item.Id" />
+                                        <sup style="z-index:3" class="position-absolute top-0 right">x</sup>
+                                        </div>
+                                    }
+                                </div>
+                                <input class="form-control" asp-for="Images" />
+                                <span class="text-danger" asp-validation-for="Images"></span>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label" asp-for="Name"></label>
+                            <input class="form-control" asp-for="Name" />
+                            <span class="text-danger" asp-validation-for="Name"></span>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label" asp-for="Desription"></label>
+                            <input class="form-control" asp-for="Desription" />
+                            <span class="text-danger" asp-validation-for="Desription"></span>
+                        </div>
+                        <div class="row">
+                            <div class="mb-4 col-md-4">
+                                <label class="form-label" asp-for="CostPrice">Maya dəyəri</label>
+                                <input class="form-control" asp-for="CostPrice" />
+                                <span class="text-danger" asp-validation-for="CostPrice"></span>
+                            </div>
+                            <div class="mb-4 col-md-4">
+                                <label class="form-label" asp-for="SellPrice">Satış qiyməti</label>
+                                <input class="form-control" asp-for="SellPrice" />
+                                <span class="text-danger" asp-validation-for="SellPrice"></span>
+                            </div>
+                            <div class="mb-4 col-md-4">
+                                <label class="form-label" asp-for="DiscountPercent">Endirim</label>
+                                <input class="form-control" asp-for="DiscountPercent" />
+                                <span class="text-danger" asp-validation-for="DiscountPercent"></span>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label" asp-for="SubTitle"></label>
+                            <input class="form-control" asp-for="SubTitle" />
+                            <span class="text-danger" asp-validation-for="SubTitle"></span>
+                        </div>
+                        <div class="row">
+                            <div class="mb-4 col-md-6">
+                                <label class="form-label" asp-for="LifeDay"></label>
+                                <input class="form-control" asp-for="LifeDay" />
+                                <span class="text-danger" asp-validation-for="LifeDay"></span>
+                            </div>
+                            <div class="mb-4 col-md-6">
+                                <label class="form-label" asp-for="StockCount"></label>
+                                <input class="form-control" asp-for="StockCount" />
+                                <span class="text-danger" asp-validation-for="StockCount"></span>
+                            </div>
+                        </div>
+                    <div class="row row-cols-5">
+                        <div class="mb-4 col">
+                            <select class="mySelect2 w-100" asp-for="CategoryId" asp-items="new SelectList(ViewBag.Categories, nameof(Category.Id),nameof(Category.Name))">
+                                <option disabled selected>Məhsulun kateqoriyasını seçin</option>
+                            </select>
+                            <span class="text-danger" asp-validation-for="CategoryId"></span>
+                        </div>
+                        <div class="mb-4 col">
+                            <select class="mySelect2 w-100" asp-for="VendorId" asp-items="new SelectList(ViewBag.Vendors, nameof(Vendor.Id),nameof(Vendor.Name))">
+                                <option disabled selected>Məhsulun istehsalçısını seçin</option>
+                            </select>
+                            <span class="text-danger" asp-validation-for="VendorId"></span>
+                        </div>
+                        <div class="mb-4 col">
+                            <select class="mySelect2 w-100" asp-for="BadgeId" asp-items="new SelectList(ViewBag.Badges, nameof(Badge.Id),nameof(Badge.Name))">
+                                <option disabled selected>Məhsulun başlığını seçin</option>
+                            </select>
+                            <span class="text-danger" asp-validation-for="BadgeId"></span>
+                        </div>
+                        <div class="mb-4 col">
+                            <label asp-for="TagIds" disabled>Teqləri seçin</label>
+                            <select multiple class="mySelect2-multiple w-100" asp-for="TagIds" asp-items="new SelectList(ViewBag.Tags, nameof(Tag.Id),nameof(Tag.Name))">
+                            </select>
+                            <span class="text-danger" asp-validation-for="TagIds"></span>
+                        </div>
+                    </div>
+                        <button type="submit" class="btn btn-success">Create</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    @section scripts{
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $('.mySelect2').select2({
+            selectOnClose: true
+        });
+        $('.mySelect2-multiple').select2({
+            selectOnClose: false
+        });
+        $(".deletable sup").click(function(){
+            $(this).parent().remove();
+        })
+    </script>
+}
+

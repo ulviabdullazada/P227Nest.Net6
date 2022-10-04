@@ -88,24 +88,30 @@
                             <span class="text-danger" asp-validation-for="StockCount"></span>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="mb-4 col-md-4">
+                    <div class="row row-cols-5">
+                        <div class="mb-4 col">
                             <select class="mySelect2 w-100" asp-for="CategoryId" asp-items="new SelectList(ViewBag.Categories, nameof(Category.Id),nameof(Category.Name))">
                                 <option disabled selected>Məhsulun kateqoriyasını seçin</option>
                             </select>
                             <span class="text-danger" asp-validation-for="CategoryId"></span>
                         </div>
-                        <div class="mb-4 col-md-4">
+                        <div class="mb-4 col">
                                 <select class="mySelect2 w-100" asp-for="VendorId" asp-items="new SelectList(ViewBag.Vendors, nameof(Vendor.Id),nameof(Vendor.Name))">
                                 <option disabled selected>Məhsulun istehsalçısını seçin</option>
                             </select>
                             <span class="text-danger" asp-validation-for="VendorId"></span>
                         </div>
-                        <div class="mb-4 col-md-4">
+                        <div class="mb-4 col">
                                 <select class="mySelect2 w-100" asp-for="BadgeId" asp-items="new SelectList(ViewBag.Badges, nameof(Badge.Id),nameof(Badge.Name))">
                                 <option disabled selected>Məhsulun başlığını seçin</option>
                             </select>
                             <span class="text-danger" asp-validation-for="BadgeId"></span>
+                        </div>
+                        <div class="mb-4 col">
+                            <label asp-for="TagIds" disabled>Teqləri seçin</label>
+                            <select multiple class="mySelect2-multiple w-100" asp-for="TagIds" asp-items="new SelectList(ViewBag.Tags, nameof(Tag.Id),nameof(Tag.Name))">
+                            </select>
+                            <span class="text-danger" asp-validation-for="TagIds"></span>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-success">Create</button>
@@ -120,6 +126,9 @@
     <script>
         $('.mySelect2').select2({
             selectOnClose: true
+        });
+        $('.mySelect2-multiple').select2({
+            selectOnClose: false
         });
     </script>
 }
