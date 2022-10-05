@@ -1,20 +1,26 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Nest.DAL;
 using Nest.Models;
+using Nest.Utlis.Enums;
 using Nest.Utlis.Extensions;
 
 namespace Nest.Areas.Manage.Controllers
 {
     [Area("Manage")]
+    [Authorize(Roles = "SuperAdmin,Admin")]
     public class VendorController : Controller
     {
         private readonly NestContext _context;
+        private readonly UserManager<AppUser> _userManager;
 
-        public VendorController(NestContext context)
+        public VendorController(NestContext context,
+                                UserManager<AppUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
         // GET: VendorController
         public ActionResult Index()
@@ -124,6 +130,10 @@ namespace Nest.Areas.Manage.Controllers
             {
                 return View();
             }
+        }
+        public async Task<IActionResult> PendingVendors()
+        {
+            return View(await _userManager.GetUsersInRoleAsync(Roles.VendorPending.ToString()));
         }
     }
 }

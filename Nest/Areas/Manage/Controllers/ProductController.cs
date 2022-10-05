@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Nest.DAL;
 using Nest.Models;
@@ -9,6 +10,7 @@ using Z.EntityFramework.Plus;
 namespace Nest.Areas.Manage.Controllers
 {
     [Area("Manage")]
+    [Authorize(Roles ="SuperAdmin,Admin")]
     public class ProductController : Controller
     {
         NestContext _context { get; }

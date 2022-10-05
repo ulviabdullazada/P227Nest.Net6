@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Nest.DAL;
@@ -10,6 +11,7 @@ using System.Reflection.Metadata;
 namespace Nest.Areas.Manage.Controllers
 {
     [Area("Manage")]
+    [Authorize(Roles ="SuperAdmin,Admin")]
     public class CategoryController : Controller
     {
         NestContext _context { get; }

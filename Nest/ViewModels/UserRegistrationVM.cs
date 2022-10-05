@@ -14,5 +14,6 @@ namespace Nest.ViewModels
         public string Password { get; set; }
         [Required,StringLength(40),DataType(DataType.Password),Compare(nameof(Password))]
         public string ConfirmPassword { get; set; }
+        public string Status { get; set; }
     }
 }

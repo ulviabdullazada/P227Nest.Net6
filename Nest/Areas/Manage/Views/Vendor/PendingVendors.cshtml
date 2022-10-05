@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewData["Title"] = "PendingVendors";
+    int order = 1;
+}
+@model List<AppUser>
+<div class="card">
+    <div class="card-header">
+        <a asp-action="Create" class="btn btn-success">Create</a>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr class="text-center">
+                    <th>№</th>
+                    <th>Image</th>
+                    <th>Username</th>
+                    <th>Company name</th>
+                    <th>Mail</th>
+                    <th colspan="2">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@(order++)</td>
+                        <td><img src="~/assets/imgs/user/@item.ProfileImageUrl" width="50" /></td>
+                        <td>@item.UserName</td>
+                        <td>@item.FullName</td>
+                        <td>@item.Email</td>
+                        <td><a asp-action="Update" asp-route-id="@item.Id" class="btn btn-success">Accept</a></td>
+                        <td><a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Reject</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

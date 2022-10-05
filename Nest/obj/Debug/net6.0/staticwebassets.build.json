@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "zH6ZUha6wZhk16952tfaFYncGgNOJLLK3hgXStfHNFo=",
+  "Hash": "Ulb0t8Cz6yY1ZQtmfYTAcY+EtA2vVnGGZlQ5q0ATC+s=",
   "Source": "Nest",
   "BasePath": "_content/Nest",
   "Mode": "Default",
@@ -4503,6 +4503,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\imgs\\theme\\wave.png"
+    },
+    {
+      "Identity": "C:\\Users\\ulvi.abdullazada\\Desktop\\Nest\\Nest\\wwwroot\\assets\\imgs\\user\\default.png",
+      "SourceId": "Nest",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ulvi.abdullazada\\Desktop\\Nest\\Nest\\wwwroot\\",
+      "BasePath": "_content/Nest",
+      "RelativePath": "assets/imgs/user/default.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\imgs\\user\\default.png"
     },
     {
       "Identity": "C:\\Users\\ulvi.abdullazada\\Desktop\\Nest\\Nest\\wwwroot\\assets\\imgs\\vendor\\132d1e41-c93a-493c-b55b-f995236d8cd3download.jfif",
