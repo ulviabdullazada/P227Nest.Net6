@@ -162,7 +162,7 @@
                                     <div class="product-category">
                                         <a href="shop-grid-right.html">@prd.Category.Name</a>
                                     </div>
-                                    <h2><a href="shop-product-right.html">@prd.Name</a></h2>
+                                    <h2><a asp-controller="Shop" asp-action="Product" asp-route-id="@prd.Id">@prd.Name</a></h2>
                                     <div class="product-rate-cover">
                                         <div class="product-rate d-inline-block">
                                             @if(prd.ReviewCount != 0){

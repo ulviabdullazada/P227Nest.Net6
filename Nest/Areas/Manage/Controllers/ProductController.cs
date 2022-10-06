@@ -142,6 +142,7 @@ namespace Nest.Areas.Manage.Controllers
                 //    prod.ProductTags.Add(new() { Product = prod, Tag = item });
                 //}
             }
+            prod.IsDeleted = false;
             _context.Products.Add(prod);
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));

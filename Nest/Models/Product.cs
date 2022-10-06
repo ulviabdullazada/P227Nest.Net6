@@ -35,6 +35,7 @@ namespace Nest.Models
         public Badge? Badge { get; set; }
         public ICollection<ProductTag>? ProductTags { get; set; }
         public ICollection<ProductImage>? ProductImages { get; set; }
+        public ICollection<ProductComment> ProductComments { get; set; }
 
 
 

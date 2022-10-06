@@ -6,6 +6,8 @@ using Nest.DAL;
 using Nest.Models;
 using Nest.Utlis.Enums;
 using Nest.Utlis.Extensions;
+using System.Net;
+using System.Net.Mail;
 
 namespace Nest.Areas.Manage.Controllers
 {
@@ -134,6 +136,44 @@ namespace Nest.Areas.Manage.Controllers
         public async Task<IActionResult> PendingVendors()
         {
             return View(await _userManager.GetUsersInRoleAsync(Roles.VendorPending.ToString()));
+        }
+        public async Task<IActionResult> SendInfoMail(string email, bool? isAccepted)
+        {
+            if (string.IsNullOrWhiteSpace(email) || isAccepted == null) return BadRequest();
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user is null) return NotFound();
+            await _userManager.RemoveFromRoleAsync(user, Roles.VendorPending.ToString());
+            if (isAccepted == true)
+            {
+                await _userManager.AddToRoleAsync(user, Roles.Vendor.ToString());
+                SendMail(email,"Info about vendor program","<p style='color:green'>Congragulations</p>");
+            }
+            else
+            {
+                await _userManager.AddToRoleAsync(user, Roles.Member.ToString());
+                SendMail(email,"Info about vendor program","<p style='color:red'>We are so sorry</p>");
+            }
+            return RedirectToAction(nameof(Index));
+        }
+        private void SendMail(string email, string subject, string body)
+        {
+            string myEmail = "nestmvcproject@gmail.com";
+            string pass = "euvmxxtbpinoytxt";
+
+            var from = new MailAddress(myEmail,"Nest support");
+            var to = new MailAddress(email);
+
+            SmtpClient smtp = new SmtpClient {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                Credentials = new NetworkCredential(myEmail,pass)
+            };
+            using (var message = new MailMessage(from, to) { Subject = subject, Body = body,IsBodyHtml=true})
+            {
+                smtp.Send(message);
+            }
+
         }
     }
 }

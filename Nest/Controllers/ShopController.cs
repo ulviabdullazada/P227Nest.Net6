@@ -56,9 +56,18 @@ namespace Nest.Controllers
                 products = products.Where(p => p.SellPrice >= items.MinPrice && p.SellPrice <= items.MaxPrice);
             return PartialView("_ProductListPartialView",products);
         }
-        public IActionResult Product()
+        public IActionResult Product(int? id)
         {
-            return View();
+            if (id is null) return BadRequest();
+            var product = _context.Products
+                .Include(p=>p.ProductTags).ThenInclude(pt=>pt.Tag)
+                .IncludeOptimized(p=>p.ProductImages)
+                .IncludeOptimized(p=>p.Badge)
+                .IncludeOptimized(p=>p.Vendor)
+                .IncludeOptimized(p=>p.ProductComments)
+                .IncludeOptimized(p=>p.Category).FirstOrDefault(p=>p.Id == id && p.IsDeleted == false);
+            if (product is null) return NotFound();
+            return View(product);
         }
 
         public IActionResult Cart()
@@ -69,6 +78,26 @@ namespace Nest.Controllers
         public IActionResult Compare()
         {
             return View();
+        }
+        [HttpPost]
+        public IActionResult PostComment(ProductComment comment)
+        {
+            RouteValueDictionary routeValueDictionary = new RouteValueDictionary();
+            routeValueDictionary.Add("ReturnUrl","/Shop/Product/"+comment.ProductId);
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Login", "Account", routeValueDictionary);
+            Product p = _context.Products.FirstOrDefault(p => p.Id == comment.ProductId && p.IsDeleted == false);
+            if (p is null) return NotFound();
+            if (!(comment.Rating >= 0 && comment.Rating <= 100) || comment is null) return RedirectToAction(nameof(Product), comment.ProductId);
+            AppUser user = _context.AppUsers.FirstOrDefault(u=>u.UserName == User.Identity.Name);
+            if (user is null) return NotFound();
+            p.ReviewSum += comment.Rating;
+            p.ReviewCount++;
+            comment.AppUser = user;
+            comment.Product = p;
+            comment.CreatedTime = DateTime.UtcNow;
+            _context.ProductComments.Add(comment);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Product), new { id = p.Id });
         }
         public IActionResult AddBasket(int? id)
         {

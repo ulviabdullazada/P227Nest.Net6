@@ -340,6 +340,38 @@ namespace Nest.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("Nest.Models.ProductComment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductComments");
+                });
+
             modelBuilder.Entity("Nest.Models.ProductImage", b =>
                 {
                     b.Property<int>("Id")
@@ -588,6 +620,23 @@ namespace Nest.Migrations
                     b.Navigation("Vendor");
                 });
 
+            modelBuilder.Entity("Nest.Models.ProductComment", b =>
+                {
+                    b.HasOne("Nest.Models.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId");
+
+                    b.HasOne("Nest.Models.Product", "Product")
+                        .WithMany("ProductComments")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("Nest.Models.ProductImage", b =>
                 {
                     b.HasOne("Nest.Models.Product", "Product")
@@ -630,6 +679,8 @@ namespace Nest.Migrations
 
             modelBuilder.Entity("Nest.Models.Product", b =>
                 {
+                    b.Navigation("ProductComments");
+
                     b.Navigation("ProductImages");
 
                     b.Navigation("ProductTags");

@@ -18,6 +18,7 @@ namespace Nest.DAL
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<ProductTag> ProductTags { get; set; }
+        public DbSet<ProductComment> ProductComments { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
 
     }
