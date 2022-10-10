@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Nest.Models;
 using Nest.Utlis.Enums;
@@ -98,6 +99,52 @@ namespace Nest.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction(nameof(Login));
+        }
+        [Authorize]
+        public async Task<IActionResult> UpdateUser()
+        {
+            ViewBag.ActiveTab = "Dashboard";
+            var user = await _userManager.FindByNameAsync(HttpContext.User.Identity.Name);
+            return View(new UpdateUserVM { Fullname = user.FullName,Email=user.Email});
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdateUser(UpdateUserVM user)
+        {
+            ViewBag.ActiveTab = "Account";
+            if (!ModelState.IsValid) return View();
+            AppUser currentUser = _userManager.FindByNameAsync(HttpContext.User.Identity.Name).Result;
+            if (currentUser == null) RedirectToAction(nameof(Login));
+            AppUser existUser = _userManager.FindByEmailAsync(user.Email).Result;
+            if (existUser != null && existUser.Email != currentUser.Email)
+            {
+                ModelState.AddModelError("Email", "This email already exist");
+                return View();
+            }
+            if (user.CurrentPassword != user.NewPassword)
+            {
+                var result = _userManager.ChangePasswordAsync(currentUser,user.CurrentPassword, user.NewPassword);
+                if (!result.IsCompletedSuccessfully)
+                {
+                    if (! _userManager.CheckPasswordAsync(currentUser, user.CurrentPassword).Result)
+                    {
+                        ModelState.AddModelError("CurrentPassword", "Current password is not correct");
+                        return View();
+                    }
+                }
+            }
+            currentUser.Email = user.Email;
+            currentUser.FullName = user.Fullname;
+            _userManager.UpdateAsync(currentUser);
+            ViewBag.ActiveTab = "Dashboard";
+            ViewBag.ToastrMessage = "Your changes is saved";
+            return View();
+
+
+            //string a = _userManager.GenerateEmailConfirmationTokenAsync();
+            //_userManager.Verif
+            //ConfirmEmail/UserId?token=a
+            //Url.Action("ConfirmEmail", "Account", new { username = "", token = "" }, HttpContext.Request.Scheme);
         }
         //public async Task CreateRoles()
         //{
